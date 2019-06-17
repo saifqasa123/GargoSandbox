@@ -1,0 +1,33 @@
+{
+  "name": "onerecordserver",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "clean": "^4.0.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-session": "^1.15.6",
+    "http-errors": "~1.6.2",
+    "jQuery": "^1.7.4",
+    "jade": "~1.11.0",
+    "jsonpatch-to-mongodb": "^0.4.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.5.10",
+    "morgan": "^1.9.1",
+    "multer": "^1.3.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.1",
+    "request": "^2.88.0",
+    "session-file-store": "^1.2.0",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.4"
+  }
+}
