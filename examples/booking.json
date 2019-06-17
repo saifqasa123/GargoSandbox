@@ -1,0 +1,14 @@
+{
+    "@context": {
+        "@vocab": "http://cargo.iata.org#"
+    },
+    "@id": "925a8af8-a0a6-4131-b403-7cf633a95510",
+    "@type": "Booking",
+    "url": "somenonmandatoryurl",
+    "BookingRequestNumber": "925a8af8-a0a6-4131-b403-7cf633a95510",
+    "Date": "xxxxxxxx",
+    "AirWaybillNumber": "xxxxxxxx",
+    "AirWaybillReference": "xxxxxxxx",
+    "BookingType": "xxxxxxxx",
+    "SegmentDetail": "xxxxxxxx"
+}

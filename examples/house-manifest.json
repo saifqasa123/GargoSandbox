@@ -1,0 +1,15 @@
+{
+    "@context": {
+        "@vocab": "http://cargo.iata.org#"
+    },
+    "@id": "925a8af8-a0a6-4131-b403-7cf783a95510",
+    "@type": "Housemanifest",
+    "url": "somenonmandatoryurl",
+    "HouseManifestID": "925a8af8-a0a6-4131-b403-7cf783a95510",
+    "Date": "xxxxxxxx",
+    "MasterAWBDetails": "xxxxxxxx",
+    "HouseWaybillDetails": "xxxxxxxx",
+    "TotalPieceCount": "xxxxxxxx",
+    "TotalSLAC": "xxxxxxxx",
+    "TotalGrossWeight": "xxxxxxxx"
+}
