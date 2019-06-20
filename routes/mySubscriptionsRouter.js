@@ -29,7 +29,7 @@ const LoFromSubscriptions = require('../models/loFromSubscription');
  *           type: object
  *           properties:
  *             lo:
- *               type: Object
+ *               type: object
  *             subscriptionKey:
  *               type: string
  *         required:
