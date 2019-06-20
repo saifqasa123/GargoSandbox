@@ -2,10 +2,10 @@
 	"@context": {
 		"@vocab": "http://cargo.iata.org#"
    },
-   "@id": "925a8af8-a0a6-4131-b403-7cf633a94010",
+   "@id": "123-1234567",
    "@type": "Airwaybill",
    "url": "somenonmandatoryurl",
-	"AirWaybillNumber": "925a8af8-a0a6-4131-b403-7cf633a94010",
+	"AirWaybillNumber": "123-1234567",
 	"Date": "xxxxxxxx",
 	"LoadTypeCode": "xxxxxxxx",
 	"FlagConsolDirectLC": "xxxxxxxx",
