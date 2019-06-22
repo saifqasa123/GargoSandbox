@@ -90,7 +90,7 @@ loRouter.route('/')
             } else {
               for (i = 0; i < subscribers.length; i++) {
                 var json = {
-                  lo: req.body.lo,
+                  lo: req.body,
                   subscriptionKey: subscribers[i].key
                 };
 
