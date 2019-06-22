@@ -94,6 +94,7 @@ loRouter.route('/')
                   subscriptionKey: subscribers[i].key
                 };
 
+
                 postContent(json, subscribers[i].subscriptionEndpoint);
               }
             }
@@ -237,15 +238,12 @@ loRouter.route('/:loId')
   *         description: Logistics object
   *       '401':
   *         description: Not authenticated
-  *       '403':
-  *         description: This logistics object is not belonging to the company under which the logged in user is subscribed
   *       '404':
   *         description: CompanyId / LoId not found
   */
   .get(cors.cors, auth.user, auth.company, (req, res, next) => {
     Company.findOne({ companyId: req.params.companyId })
       .then((company) => {
-        if (company.companyId === req.user.companyId) {
           Lo.findOne({ companyId: req.params.companyId, loId: req.params.loId })
             .then((lo) => {
               if (lo) {
@@ -259,11 +257,6 @@ loRouter.route('/:loId')
               }
             }, (err) => next(err))
             .catch((err) => next(err));
-        } else {
-          res.statusCode = 403;
-          res.setHeader('Content-Type', 'application/json');
-          res.json({ message: 'Cannot retrieve logistics object: this company is not the one under which the logged in user is registered.' });
-        }
       }, (err) => next(err))
       .catch((err) => {
         res.statusCode = 404;
