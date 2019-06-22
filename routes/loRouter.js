@@ -322,8 +322,10 @@ loRouter.route('/:loId')
               for (let b in req.body) {
                 if (isArray(req.body[b])) {
                   if (lo.logisticsObject[b]) {
-                    lo.logisticsObject[b].push(req.body[b]);
+                    for (let c in req.body[b]) {
+                    lo.logisticsObject[b].push(req.body[b][c]);
                     lo.markModified("logisticsObject." + b);
+                    }
                   } else {
                     lo.logisticsObject[b] = req.body[b];
                     lo.markModified("logisticsObject." + b);
@@ -333,6 +335,7 @@ loRouter.route('/:loId')
                   lo.markModified("logisticsObject." + b);
                 }
               }
+
 
               lo.save();
 
