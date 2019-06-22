@@ -71,14 +71,14 @@ loRouter.route('/')
           };
 
           if (!req.body['@url']) {
-            logisticsObjectContent.url = config.url + '/' + req.params.companyId + '/' + id;
+            logisticsObjectContent.url = config.url + '/companies/' + req.params.companyId + '/los/' + id;
           };
 
           logisticsObjectContent['@id'] = id;
           var logisticsObject = new Lo({
             logisticsObject: logisticsObjectContent,
             companyId: req.params.companyId,
-            url: req.body['@url'] ? req.body['@url'] : config.url + '/' + req.params.companyId + '/' + id,
+            url: req.body['@url'] ? req.body['@url'] : config.url + '/companies/' + req.params.companyId + '/los/' + id,
             type: req.body['@type'],
             loId: id,
           });
@@ -93,7 +93,6 @@ loRouter.route('/')
                   lo: req.body,
                   subscriptionKey: subscribers[i].key
                 };
-
 
                 postContent(json, subscribers[i].subscriptionEndpoint);
               }
@@ -324,6 +323,10 @@ loRouter.route('/:loId')
                 lo.logisticsObject[b] = req.body[b];
                 lo.markModified("logisticsObject" + b);
               }
+
+              Lo.update({_id: lo["_id"]}, lo, function(err, affected, resp) {
+               console.log(resp);
+              })
 
               lo.save();
 
