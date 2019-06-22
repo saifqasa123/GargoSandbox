@@ -67,7 +67,7 @@ loRouter.route('/')
             res.statusCode = 400;
             res.setHeader('Content-Type', 'application/json');
             res.json({ message: 'Logistics object should contain @type field: Airwaybill, Housemanifest, Housewaybill or Booking' });
-            return;          
+            return;
           };
 
           if (!req.body['@url']) {
@@ -243,19 +243,19 @@ loRouter.route('/:loId')
   .get(cors.cors, auth.user, auth.company, (req, res, next) => {
     Company.findOne({ companyId: req.params.companyId })
       .then((company) => {
-          Lo.findOne({ companyId: req.params.companyId, loId: req.params.loId })
-            .then((lo) => {
-              if (lo) {
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(lo);
-              } else {
-                res.statusCode = 404;
-                res.setHeader('Content-Type', 'application/json');
-                res.json({ message: 'LoId not found.' });
-              }
-            }, (err) => next(err))
-            .catch((err) => next(err));
+        Lo.findOne({ companyId: req.params.companyId, loId: req.params.loId })
+          .then((lo) => {
+            if (lo) {
+              res.statusCode = 200;
+              res.setHeader('Content-Type', 'application/json');
+              res.json(lo);
+            } else {
+              res.statusCode = 404;
+              res.setHeader('Content-Type', 'application/json');
+              res.json({ message: 'LoId not found.' });
+            }
+          }, (err) => next(err))
+          .catch((err) => next(err));
       }, (err) => next(err))
       .catch((err) => {
         res.statusCode = 404;
@@ -320,13 +320,19 @@ loRouter.route('/:loId')
               }
 
               for (let b in req.body) {
-                lo.logisticsObject[b] = req.body[b];
-                lo.markModified("logisticsObject" + b);
+                if (isArray(req.body[b])) {
+                  if (lo.logisticsObject[b]) {
+                    lo.logisticsObject[b].push(req.body[b]);
+                    lo.markModified("logisticsObject." + b);
+                  } else {
+                    lo.logisticsObject[b] = req.body[b];
+                    lo.markModified("logisticsObject." + b);
+                  }
+                } else {
+                  lo.logisticsObject[b] = req.body[b];
+                  lo.markModified("logisticsObject." + b);
+                }
               }
-
-              Lo.update({_id: lo["_id"]}, lo, function(err, affected, resp) {
-               console.log(resp);
-              })
 
               lo.save();
 
@@ -430,6 +436,10 @@ function postContent(bodyToPost, subscriberHost) {
       }
     }
   );
+}
+
+function isArray(what) {
+  return Object.prototype.toString.call(what) === '[object Array]';
 }
 
 module.exports = loRouter;
