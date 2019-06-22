@@ -322,6 +322,7 @@ loRouter.route('/:loId')
 
               for (let b in req.body) {
                 lo.logisticsObject[b] = req.body[b];
+                lo.markModified("logisticsObject" + b);
               }
 
               lo.save();
