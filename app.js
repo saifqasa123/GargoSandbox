@@ -18,6 +18,7 @@ var passport = require('passport');
 var indexRouter = require('./routes/index');
 var companyRouter = require('./routes/companyRouter');
 var mySubscriptionsRouter = require('./routes/mySubscriptionsRouter');
+var email = require('./routes/email')
 
 var swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -82,6 +83,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/', indexRouter);
 app.use('/companies', companyRouter);
 app.use('/mySubscriptions', mySubscriptionsRouter);
+app.use('/email', email);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
