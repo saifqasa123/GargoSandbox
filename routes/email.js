@@ -44,28 +44,12 @@ emailRouter.use(bodyParser.json());
  *       '500':
  *         description: Internal Server Error
  */
-emailRouter.post('/', cors.cors, (req, res, next) => {
-    console.log(req.body);
-    // Generate SMTP service account from ethereal.email
-    nodemailer.createTestAccount((err, account) => {
-        console.log("user " + account.user + ' ' + "password " + account.pass);
-        if (err) {
-            console.error('Failed to create a testing account. ' + err.message);
-            next(err);
-        }
+emailRouter.route('/')
+    .options(cors.cors, (req, res) => { res.sendStatus(200); })
+    .post(cors.cors, (req, res, next) => {
+        console.log(req.body);
+        // Generate SMTP service account from ethereal.email
 
-        console.log('Credentials obtained, sending message...');
-
-        // Create a SMTP transporter object
-        // let transporter = nodemailer.createTransport({
-        //     host: account.smtp.host,
-        //     port: account.smtp.port,
-        //     secure: account.smtp.secure,
-        //     auth: {
-        //         user: account.user,
-        //         pass: account.pass
-        //     }
-        // });
 
         let transporter = nodemailer.createTransport({
             host: 'smtp.ethereal.email',
@@ -90,8 +74,8 @@ emailRouter.post('/', cors.cors, (req, res, next) => {
                 console.log('Error occurred. ' + err.message);
                 res.statusCode = 400;
                 res.setHeader('Content-Type', 'application/json');
-                res.setHeader("Access-Control-Allow-Origin", "*");
-                res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
                 res.json({ message: err.message });
                 return;
             }
@@ -101,9 +85,9 @@ emailRouter.post('/', cors.cors, (req, res, next) => {
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.json({ message: 'Preview URL: '+ nodemailer.getTestMessageUrl(info) });
+            res.json({ message: 'Preview URL: ' + nodemailer.getTestMessageUrl(info) });
         });
+
     });
-});
 
 module.exports = emailRouter;
