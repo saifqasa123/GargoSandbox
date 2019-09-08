@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-var whitelist = ['http://localhost:5000', 'http://www.onerecordcargo.org/','https://gargo-shipment-tracking.herokuapp.com/'];
+var whitelist = ['http://localhost:5000','http://localhost:3000', 'http://www.onerecordcargo.org/','https://gargo-shipment-tracking.herokuapp.com/'];
 
 var corsOptionsDelegate = (req, callback) => {
     var corsOptions;
