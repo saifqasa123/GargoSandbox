@@ -90,6 +90,8 @@ emailRouter.post('/', cors.cors, (req, res, next) => {
                 console.log('Error occurred. ' + err.message);
                 res.statusCode = 400;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
                 res.json({ message: err.message });
                 return;
             }
