@@ -10,7 +10,7 @@ const cors = require('./cors');
  *     tags:
  *       - Data Streaming
  *     name: data streaming 
- *     summary: Use this API service to get hooked up with the Iot device
+ *     summary: Use the API service to get hooked up with the IoT device
  *     description: capturing a real life data from the IoT device and display it on the console.
  *     consumes:
  *       - application/json
